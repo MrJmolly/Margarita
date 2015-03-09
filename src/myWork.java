@@ -1,5 +1,15 @@
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.InputMismatchException;
+import java.util.Locale;
+import java.util.regex.Pattern;
 
 public class myWork {
 
@@ -7,10 +17,8 @@ public class myWork {
 		try{
 			int n=Integer.parseInt(args[2]);
 			int i=Integer.parseInt(args[3]);
-			String nm = args[0];
-			String nm1 = args[1];
-			File f = new File(nm);
-			File f1 = new File(nm1);
+			File f = new File(args[0]);
+			File f1 = new File(args[1]);
 			int k=0;
 			String line;
 			BufferedReader br = new BufferedReader(new FileReader(f));
@@ -21,7 +29,7 @@ public class myWork {
 				if (k>=n && k<n+i){
 					bw.write(line);
 					bw.newLine();
-					strDiv(line);
+					strDivO(strDiv(line));
 				}
 				else if (k>n+i) break;
 			}
@@ -38,33 +46,26 @@ public class myWork {
 			System.out.print("File not found!!!");
 		}
 	}
-	public static void strDiv(String str){
+	public static strDivC strDiv(String str) throws ParseException{
 
 		strDivC s = new strDivC();
+		SimpleDateFormat format = new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z", Locale.US);
 		String[] parts = new String[4];
 		parts = str.split(" ");
-		s.host = parts[0];
-		s.time = parts[3]+" "+parts[4];
-		s.req = parts[5]+" "+parts[6]+" "+parts[7];
-		s.http = Integer.parseInt(parts[8]);
-		s.reply = Integer.parseInt(parts[9]);
-		strDivO(s);
+		if (Pattern.matches("(^(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})$)", parts[0])) s.setHostIp(parts[0]);
+		else s.setHostName(parts[0]);
+		s.setDate(format.parse(parts[3].replace("[", "") + " " + parts[4].replace("]", "")));
+		s.setReq(parts[5]+" "+parts[6]+" "+parts[7]);
+		s.setHttp(Integer.parseInt(parts[8]));
+		s.setReply(Integer.parseInt(parts[9]));
+		return s;
 	}
 	public static void strDivO(strDivC s){
 		System.out.println("----------------------------");
-		System.out.println("Host: " + s.host);
-		System.out.println("Time: " + s.time);
-		System.out.println("Request: " + s.req);
-		System.out.println("Http reply code: " + s.http);
-		System.out.println("Bytes in reply: " + s.reply);
-	
-	}
-	private static class strDivC{
-		String host;
-		String time;
-		String req;
-		int http;
-		int reply;
-		
+		System.out.println("Host: " + s.getHostIp() + s.getHostName());
+		System.out.println("Time: " + s.getDate());
+		System.out.println("Request: " + s.getReq());
+		System.out.println("Http reply code: " + s.getHttp());
+		System.out.println("Bytes in reply: " + s.getReply());
 	}
 }
