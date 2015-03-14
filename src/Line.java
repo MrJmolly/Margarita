@@ -1,6 +1,6 @@
 import java.util.Date;
 
-public class strDivC{
+public class Line{
 	
 		private String hostIp="";
 		private String hostName="";
@@ -9,6 +9,14 @@ public class strDivC{
 		private int http;
 		private int reply;
 		
+		public void lineToString(){
+			System.out.println("----------------------------");
+			System.out.println("Host: "  + getHostName() + getHostIp());
+			System.out.println("Time: " + getDate());
+			System.out.println("Request: " + getReq());
+			System.out.println("Http reply code: " + getHttp());
+			System.out.println("Bytes in reply: " + getReply());
+		}		
 		public String getHostIp() {
 			return hostIp;
 		}
