@@ -9,6 +9,13 @@ import java.text.ParseException;
 
 public class StringProcess implements IStringProcess {
 
+	private IStringDivision strDivision;
+	private IStringDivisionOutput strDivisionOutput;
+	public StringProcess (IStringDivision strDivision, IStringDivisionOutput strDivisionOutput)
+	{
+		this.strDivision = strDivision;
+		this.strDivisionOutput = strDivisionOutput;
+	}
 	@Override
 	public void stringProcess(int lineStart, int lineCount, String fileReadName, String fileWriteName) throws ParseException, IOException {
 		File fileRead = new File(fileReadName);
@@ -23,9 +30,8 @@ public class StringProcess implements IStringProcess {
 				String line = bufferedReader.readLine();
 				bufferedWriter.write(line);
 				bufferedWriter.newLine();
-				StringDivision strDivision = new StringDivision();
-				StringDivisionOutput strDivisionOutput = new StringDivisionOutput();
 				strDivisionOutput.stringDivisionOutput(strDivision.stringDivision(line));
+				
 			}
 			else if (count>lineStart+lineCount) break;
 		}
