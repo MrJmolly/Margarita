@@ -1,19 +1,29 @@
 import java.util.regex.Pattern;
 
 
-public class Host {
+public class LineHost {
+	private String host = "";
 	private String hostName = "";
 	private String hostIp = "";
 	
 	public void hostToString(){
 
-		if (Pattern.matches("(^(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})$)", hostName))
+		if (Pattern.matches("(^(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})$)", host))
 		{
-			hostIp = hostName;
-			hostName = "";
+			hostIp = host;
 			System.out.println("IP: " + getHostIp());
 		}
-		else System.out.println("Host: " + getHostName());
+		else{
+			hostName = host;
+			System.out.println("Host: " + getHostName());
+		} 
+			
+	}
+	public String getHost() {
+		return host;
+	}
+	public void setHost(String host) {
+		this.host = host;
 	}
 	public String getHostName() {
 		return hostName;

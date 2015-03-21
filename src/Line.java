@@ -2,7 +2,7 @@ import java.util.Date;
 
 public class Line{
 	
-		private Host host = new Host();
+		private LineHost host = new LineHost();
 		private Date date;
 		private String req;
 		private int http;
@@ -17,11 +17,11 @@ public class Line{
 			System.out.println("Bytes in reply: " + getReply());
 		}
 		
-		public Host getHost() {
+		public LineHost getHost() {
 			return host;
 		}
 		public void setHost(String str) {
-			host.setHostName(str);
+			host.setHost(str);
 		}		
 		public Date getDate() {
 			return date;

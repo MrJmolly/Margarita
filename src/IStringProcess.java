@@ -3,6 +3,6 @@ import java.text.ParseException;
 
 
 public interface IStringProcess {
-	public void stringProcess(int lineStart, int lineCount, String fileReadName, String fileWriteName) throws ParseException, IOException;
+	public void stringProcess(int lineStart, int lineCount, String fileReadName, String fileWriteName, Line[] lineArray) throws ParseException, IOException;
 
 }

@@ -1,9 +1,6 @@
 
 import java.io.FileNotFoundException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.InputMismatchException;
-import java.util.Locale;
 
 public class LogFileAnalyzer {
 
@@ -14,10 +11,16 @@ public class LogFileAnalyzer {
 			int lineStart=Integer.parseInt(args[2]);
 			int lineCount=Integer.parseInt(args[3]);
 			int reportNumber = Integer.parseInt(args[4]);
+			Line[] lineArray = new Line[lineCount];
 			IStringDivision strDivision = new StringDivision(); 
 			IStringDivisionOutput strDivisionOutput = new StringDivisionOutput();
 			IStringProcess strProcess = new StringProcess(strDivision, strDivisionOutput);
-			strProcess.stringProcess(lineStart, lineCount, fileReadName, fileWriteName);
+			strProcess.stringProcess(lineStart, lineCount, fileReadName, fileWriteName, lineArray);
+			IReportFirst repFirst = new ReportFirst();
+			IReportSecond repSecond = new ReportSecond();
+			IReportThird repThird = new ReportThird();
+			IReports reports = new Reports(repFirst, repSecond, repThird);
+			reports.reportChoose(reportNumber, lineArray);
 			
 		}	 
 		catch (ArrayIndexOutOfBoundsException e){
