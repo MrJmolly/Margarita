@@ -1,23 +1,14 @@
 
-public class ReportThird implements IReportThird {
+public class ReportThird {
+	
+	private String maxRequest = "";
 
-	@Override
-	public void reportThird(Line[] lineArray) {
-		
-		int maxBytes = 0;
-		String maxRequest = "";
-		for (int i = 0; i<lineArray.length; i++)
-		{
-			if (lineArray[i].getReply()>maxBytes) 
-				{
-					maxBytes = lineArray[i].getReply();
-					maxRequest = lineArray[i].getReq();
-				}
-		}
-		
-		System.out.println("----------------------------");
-		System.out.println("Request with " + maxBytes + " bytes in reply: " + maxRequest );
-		
+	public String getMaxRequest() {
+		return maxRequest;
 	}
+	public void setMaxRequest(String maxRequest) {
+		this.maxRequest = maxRequest;
+	}
+	
 
 }

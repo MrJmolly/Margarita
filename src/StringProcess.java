@@ -11,24 +11,25 @@ public class StringProcess implements IStringProcess {
 
 	private IStringDivision strDivision;
 	private IStringDivisionOutput strDivisionOutput;
-	public StringProcess (IStringDivision strDivision, IStringDivisionOutput strDivisionOutput)
-	{
+	public StringProcess (IStringDivision strDivision, IStringDivisionOutput strDivisionOutput){
 		this.strDivision = strDivision;
 		this.strDivisionOutput = strDivisionOutput;
 	}
 	@Override
-	public void stringProcess(int lineStart, int lineCount, String fileReadName, String fileWriteName, Line[] lineArray) throws ParseException, IOException {
+	
+	public  Line[] stringProcess(int lineStart, int lineCount, String fileReadName, String fileWriteName) throws ParseException, IOException {
 		File fileRead = new File(fileReadName);
 		File fileWrite = new File(fileWriteName);
 		int count = 0;
 		int countLine = 0;
 		String line;
+		Line[] lineArray = new Line[lineCount];
 		BufferedReader bufferedReader = new BufferedReader(new FileReader(fileRead));
 		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileWrite));
-		while((line = bufferedReader.readLine())!=null)
-		{
+		while((line = bufferedReader.readLine())!=null){
 			count++;
 			if (count>=lineStart && count<lineCount+lineStart){
+				System.out.println(line);
 				System.out.println("----------------------------");
 				System.out.println("Divided string number " + (countLine+1));
 				bufferedWriter.write(line);
@@ -40,6 +41,7 @@ public class StringProcess implements IStringProcess {
 		}
 		bufferedReader.close();
 		bufferedWriter.close();
+		return lineArray;
 
 	}
 

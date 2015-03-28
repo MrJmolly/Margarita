@@ -11,16 +11,25 @@ public class LogFileAnalyzer {
 			int lineStart=Integer.parseInt(args[2]);
 			int lineCount=Integer.parseInt(args[3]);
 			int reportNumber = Integer.parseInt(args[4]);
-			Line[] lineArray = new Line[lineCount];
 			IStringDivision strDivision = new StringDivision(); 
 			IStringDivisionOutput strDivisionOutput = new StringDivisionOutput();
 			IStringProcess strProcess = new StringProcess(strDivision, strDivisionOutput);
-			strProcess.stringProcess(lineStart, lineCount, fileReadName, fileWriteName, lineArray);
-			IReportFirst repFirst = new ReportFirst();
-			IReportSecond repSecond = new ReportSecond();
-			IReportThird repThird = new ReportThird();
-			IReports reports = new Reports(repFirst, repSecond, repThird);
-			reports.reportChoose(reportNumber, lineArray);
+			strProcess.stringProcess(lineStart, lineCount, fileReadName, fileWriteName);
+			if (reportNumber == 1){
+				IReportFirstGenerator repFirstGen = new ReportFirstGenerator();
+				repFirstGen.reportFirstGenerator(strProcess.stringProcess(lineStart, lineCount, fileReadName, fileWriteName)).treeMapToString();;
+				
+			}
+			else if (reportNumber == 2){
+				IReportSecondGenerator repSecondGen = new ReportSecondGenerator();
+				System.out.println("Bytes over all requests: " + repSecondGen.reportSecondGenerator(strProcess.stringProcess(lineStart, lineCount, fileReadName, fileWriteName)).getBytesAll());
+			}
+			else {
+				IReportThirdGenerator repThirdGen = new ReportThirdgenerator();
+				System.out.println("Max Request: " + repThirdGen.reportThirdGenerator(strProcess.stringProcess(lineStart, lineCount, fileReadName, fileWriteName)));
+				
+			}
+			
 			
 		}	 
 		catch (ArrayIndexOutOfBoundsException e){

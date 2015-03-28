@@ -1,17 +1,16 @@
 
-public class ReportSecond implements IReportSecond {
+public class ReportSecond {
 	
-	@Override
-	public void reportSecond(Line[] lineArray) {
+	private int bytesAll = 0;
 
-		int bytesAll = 0;
-		
-		for (int i = 0; i<lineArray.length; i++)
-		{
-			bytesAll += lineArray[i].getReply();
-		}
-		System.out.println("----------------------------");
-		System.out.println("Bytes over all request: " + bytesAll);
+	public int getBytesAll() {
+		return bytesAll;
 	}
+
+	public void setBytesAll(int bytesAll) {
+		this.bytesAll = bytesAll;
+	}
+	
+	
 
 }
