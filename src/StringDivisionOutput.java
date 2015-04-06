@@ -5,5 +5,4 @@ public class StringDivisionOutput implements IStringDivisionOutput {
 	public void stringDivisionOutput(Line line) {
 			line.lineToString();		
 	}
-
 }

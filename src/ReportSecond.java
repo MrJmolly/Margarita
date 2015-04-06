@@ -10,7 +10,4 @@ public class ReportSecond {
 	public void setBytesAll(int bytesAll) {
 		this.bytesAll = bytesAll;
 	}
-	
-	
-
 }

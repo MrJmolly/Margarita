@@ -18,6 +18,4 @@ public class ReportFirstValueComparator implements Comparator<String> {
             return 1;
         } 
     }
- 
-
 }

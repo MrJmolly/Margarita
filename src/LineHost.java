@@ -37,6 +37,5 @@ public class LineHost {
 	public void setHostIp(String hostIp) {
 		this.hostIp = hostIp;
 	}
-	
 
 }

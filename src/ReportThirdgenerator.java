@@ -1,24 +1,23 @@
 
-public class ReportThirdgenerator implements IReportThirdGenerator {
+public class ReportThirdGenerator implements IReportGenerator<ReportParameters, ReportThird> {
 
 	
 	
 	@Override
-	public ReportThird reportThirdGenerator(Line[] lineArray) {
+	public ReportThird reportGenerator(ReportParameters reportParameters) {
 		
 		int maxBytes = 0;
 		ReportThird repThird = new ReportThird();
-		for (int i = 0; i<lineArray.length; i++)
+		for (int i = 0; i<reportParameters.getLine().length; i++)
 		{
-			if (lineArray[i].getReply()>maxBytes) 
+			if (reportParameters.getLine()[i].getDate().getTime()>reportParameters.getDateFrom().getTime() && reportParameters.getLine()[i].getDate().getTime()<reportParameters.getDateTo().getTime()){
+				if (reportParameters.getLine()[i].getReply()>maxBytes) 
 				{
-					maxBytes = lineArray[i].getReply();
-					repThird.setMaxRequest(lineArray[i].getReq());
+					maxBytes = reportParameters.getLine()[i].getReply();
+					repThird.setMaxRequest(reportParameters.getLine()[i].getReq());
 				}
 		}
-		
+		}
 		return repThird;
-		
 	}
-
 }

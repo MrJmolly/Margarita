@@ -29,20 +29,18 @@ public class StringProcess implements IStringProcess {
 		while((line = bufferedReader.readLine())!=null){
 			count++;
 			if (count>=lineStart && count<lineCount+lineStart){
-				System.out.println(line);
 				System.out.println("----------------------------");
 				System.out.println("Divided string number " + (countLine+1));
+				System.out.println(line);
 				bufferedWriter.write(line);
 				bufferedWriter.newLine();
 				strDivisionOutput.stringDivisionOutput(lineArray[countLine]=strDivision.stringDivision(line));
 				countLine++;
 			}
-			else if (count>lineCount) break;
+			if (countLine>lineCount) break;
 		}
 		bufferedReader.close();
 		bufferedWriter.close();
 		return lineArray;
-
 	}
-
 }

@@ -9,6 +9,4 @@ public class ReportThird {
 	public void setMaxRequest(String maxRequest) {
 		this.maxRequest = maxRequest;
 	}
-	
-
 }
