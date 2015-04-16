@@ -9,13 +9,12 @@ public class ReportFirstGenerator implements IReportGenerator<ReportParameters, 
 		ReportFirst repFirst = new ReportFirst();
 		HashMap<String,Integer> map = new HashMap<String,Integer>();
 		ReportFirstValueComparator bvc =  new ReportFirstValueComparator(map);
-		TreeMap<String,Integer> tree_map = new TreeMap<String,Integer>(bvc);            
-		int i = reportParameters.getLine().length; 
+		TreeMap<String,Integer> tree_map = new TreeMap<String,Integer>(bvc); 
 		String names;
-		for(int p=0; p<i; p++){
+		for(int i=0; i<reportParameters.getLine().length; i++){
 			if (reportParameters.getLine()[i].getDate().getTime()>reportParameters.getDateFrom().getTime() && reportParameters.getLine()[i].getDate().getTime()<reportParameters.getDateTo().getTime())
 			{
-		    names=reportParameters.getLine()[p].getHost().getHost();
+		    names=reportParameters.getLine()[i].getHost().getHost();
 		    int j=0;
 		    if(map.containsKey(names)){                 
 		        j= map.get(names);                      
@@ -24,7 +23,7 @@ public class ReportFirstGenerator implements IReportGenerator<ReportParameters, 
 		    }
 		    else{
 		        map.put(names,j);                   
-		    }        
+		    }
 			}
 		}
 		tree_map.putAll(map);
