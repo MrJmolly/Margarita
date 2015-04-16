@@ -23,6 +23,7 @@ public class LogFileAnalyzer {
 			reportParameters.setDateTo(format.parse(args[6]));
 			if (reportNumber == 1){
 				IReportGenerator<ReportParameters, ReportFirst > repFirstGen = new ReportFirstGenerator();
+				
 				repFirstGen.reportGenerator(reportParameters).treeMapToString();
 			}
 			else if (reportNumber == 2){
